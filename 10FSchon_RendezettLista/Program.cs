@@ -14,7 +14,7 @@ namespace _10FSchon_RendezettLista
             private List<T> lista;
             private Func<T, T, int> relacio;
 
-            public RendezettLista(Func<T,T, int> relacio)
+            public RendezettLista(Func<T, T, int> relacio)
             {
                 this.lista = new List<T>();
                 this.relacio = relacio;
@@ -43,12 +43,64 @@ namespace _10FSchon_RendezettLista
             public void Add(T e)
             {
                 int itt = Helye(e);
-                if (itt==lista.Count)
+                if (itt == lista.Count)
                     lista.Add(e); // nem rekurzió! A lista Add-ját hívtuk meg!
                 else
                     lista.Insert(itt, e);
             }
 
+            public override string ToString()
+            {
+                string str = "";
+                for (int i = 0; i < lista.Count; i++)
+                    str += $"{lista[i]} ";
+                return str;
+            }
+
+            public T Max() => lista[lista.Count - 1];
+            public T Min() => lista[0];
+            public T Median() => lista[lista.Count / 2];
+            public T Kvartilis1() => lista[lista.Count / 4];
+            public T Kvartilis3() => lista[3 * lista.Count / 4];
+
+            public T this[int i] { get => lista[i]; }
+
+            public int Count => lista.Count;
+
+            public void RemoveAt(int i) => lista.RemoveAt(i);
+
+            public static RendezettLista<T> operator +(RendezettLista<T> A, RendezettLista<T> B)
+            {
+                RendezettLista<T> C = new RendezettLista<T>(A.relacio);
+
+                int i = 0;
+                int j = 0;
+
+                while (i < A.Count && j < B.Count)
+                {
+                    ///...
+                }
+
+                while (i < A.Count)
+                {
+                    ///...
+                }
+
+                while (j < B.Count)
+                {
+                    ///...
+                }
+
+
+            }
+
+            // TODO list
+            /*
+             * + : unió
+             * - : különbség
+             * * : metszet
+             * 
+             */
         }
 
         static void Main(string[] args)
@@ -63,6 +115,7 @@ namespace _10FSchon_RendezettLista
             rendezettlista.Add(15);
             rendezettlista.Add(1);
 
+            Console.WriteLine(rendezettlista);
 
         }
     }
